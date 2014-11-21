@@ -2,9 +2,9 @@
 
 - name: make sure local keys directory exists
   local_action:
-    module: files
+    module: file
     state: directory
-    path: 'keys'
+    path: "{{ playbook_dir }}/keys"
 
 - name: create a new keyfile when force_keypair=True
   local_action:
