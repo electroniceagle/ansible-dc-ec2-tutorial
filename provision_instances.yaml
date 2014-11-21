@@ -7,4 +7,5 @@
   tasks:
     # make sure a keypair exists
     - include: tasks/keypair.yaml name="mykey"
+    - include: tasks/securitygroup.yaml name="mygroup"
 

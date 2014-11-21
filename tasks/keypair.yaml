@@ -1,12 +1,18 @@
 ---
 
-- name: create a new keyfile when force=True
+- name: make sure local keys directory exists
+  local_action:
+    module: files
+    state: directory
+    path: 'keys'
+
+- name: create a new keyfile when force_keypair=True
   local_action:
     module: ec2_key
     name: "{{ name|default('tutorial') }}"
     region: "{{ region|default('us-east-1') }}"
     state: absent
-  when: force|default('False')
+  when: force_keypair|default('False')
 
 - name: make a keypair with the specified name
   local_action:
@@ -16,7 +22,7 @@
     wait: yes
   register: key_data
 
-- name: save the key file
+- name: save the key file to local host
   local_action:
     module: copy
     content: "{{ key_data.key.private_key }}"
