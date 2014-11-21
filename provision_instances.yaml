@@ -1,0 +1,10 @@
+---
+
+- name: Provision the production instances
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  tasks:
+    # make sure a keypair exists
+    - include: tasks/keypair.yaml name="mykey"
+

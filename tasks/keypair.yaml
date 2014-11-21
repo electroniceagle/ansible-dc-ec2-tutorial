@@ -1,0 +1,27 @@
+---
+
+- name: create a new keyfile when force=True
+  local_action:
+    module: ec2_key
+    name: "{{ name|default('tutorial') }}"
+    region: "{{ region|default('us-east-1') }}"
+    state: absent
+  when: force|default('False')
+
+- name: make a keypair with the specified name
+  local_action:
+    module: ec2_key
+    name: "{{ name|default('tutorial') }}"
+    region: "{{ region|default('us-east-1') }}"
+    wait: yes
+  register: key_data
+
+- name: save the key file
+  local_action:
+    module: copy
+    content: "{{ key_data.key.private_key }}"
+    dest: "keys/{{ name|default('tutorial') }}"
+  when: key_data.key.private_key|default(0)
+
+- name: debug key_data
+  debug: msg="{{ key_data }}"

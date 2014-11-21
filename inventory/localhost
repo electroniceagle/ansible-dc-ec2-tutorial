@@ -1,0 +1,1 @@
+localhost ansible_python_interpreter=~/.virtualenvs/ansible-dc-ec2-tutorial/bin/python

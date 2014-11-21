@@ -1,3 +1,2 @@
-keyring
 boto
 ansible
