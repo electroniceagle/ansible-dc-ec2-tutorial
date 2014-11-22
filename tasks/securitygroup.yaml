@@ -4,7 +4,7 @@
   local_action:
     module: ec2_group
     name: "{{ name|default('mygroup') }}"
-    description: "ansible generated group for {{ name }} instance"
+    description: "ansible generated group"
     region: "{{ region|default('us-east-1') }}"
     rules:
         - proto: tcp
@@ -22,4 +22,7 @@
     rules_egress:
         - proto: all
           cidr_ip: "0.0.0.0/0"
+  register: securitygroup_data
 
+- name: debug security group
+  debug: msg="{{ securitygroup_data }}"
