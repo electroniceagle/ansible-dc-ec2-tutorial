@@ -1,0 +1,5 @@
+---
+
+- name: set hostname to tag name
+  hostname: name={{ ec2_tag_Name }}
+  when: ec2_tag_Name is defined

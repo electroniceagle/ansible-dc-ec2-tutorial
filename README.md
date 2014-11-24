@@ -24,6 +24,10 @@ Set AWS_ACCESS_KEY and AWS_SECRET_KEY for Ansible and AWS_SECRET_KEY and AWS_SEC
     export AWS_SECRET_KEY="***************************************"
     export AWS_SECRET_ACCESS_KEY="*************************************"
 
+Disable host key checking::
+
+    export ANSIBLE_HOST_KEY_CHECKING=False
+
 Sanity test the ec2.py dynamic environment script::
 
     $ cd inventory
@@ -33,5 +37,16 @@ Sanity test the ec2.py dynamic environment script::
         "hostvars": {}
       }
     }
+    $ cd ..
 
-The ec2.py inventory script fails silently if AWS_ACCESS_KEY_ID is not set.
+    Note: The ec2.py inventory script fails silently if AWS_ACCESS_KEY_ID is not set.
+
+Provisioning Example:
+---------------------
+
+Start the provision_instances playbook::
+
+    $ ansible-playbook -i ./inventory provision_instances.yaml
+
+
+

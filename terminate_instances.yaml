@@ -1,7 +1,7 @@
 ---
 
 - name: Terminate instances
-  hosts: ec2
+  hosts: webservers dbservers
   connection: local
   gather_facts: false
   tasks:

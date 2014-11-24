@@ -1,0 +1,14 @@
+---
+# update ubuntu to the latest packages
+
+- name: upgrade packages
+  apt: >
+    install_recommends=no
+    cache_valid_time=3600
+    update_cache=yes
+    upgrade=yes
+
+- name: set hostname to tag name
+  hostname: name={{ ec2_tag_Name }}
+  when: platform_hostname is defined
+

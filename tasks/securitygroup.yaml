@@ -25,4 +25,4 @@
   register: securitygroup_data
 
 - name: debug security group
-  debug: msg="{{ securitygroup_data }}"
+  debug: "msg='{{ securitygroup_data }}'"

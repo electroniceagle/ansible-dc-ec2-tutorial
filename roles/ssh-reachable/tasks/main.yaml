@@ -1,0 +1,6 @@
+---
+
+- name: wait for ssh to be available
+  local_action: wait_for host="{{ host|default(ec2_public_dns_name) }}"
+                port="{{ port|default(22) }}" state="started"
+  sudo: False

@@ -27,6 +27,7 @@
     module: copy
     content: "{{ key_data.key.private_key }}"
     dest: "keys/{{ name|default('tutorial') }}"
+    mode: 0600
   when: key_data.key.private_key|default(0)
 
 - name: debug keypair
