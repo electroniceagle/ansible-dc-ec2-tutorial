@@ -1,3 +1,4 @@
+#!/usr/bin/env ansible-playbook -i inventory
 ---
 
 - name: Provision the instances
