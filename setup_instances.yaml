@@ -1,13 +1,18 @@
-#!/usr/bin/env ansible-playbook -i inventory
+#!/usr/bin/env ansible-playbook
 ---
+
+- name: Provision the instances
+  hosts: localhost
+  gather_facts: false
+  connection: local
+  tasks:
+
 
 - name: Configure common packages
   hosts:
     - security_group_webservers
     - security_group_dbservers
   sudo: true
-  ssh_user: ubuntu
-  ansible_ssh_private_key_file: "keys/{{ ec2_key_name }}"
   roles:
     - ssh-reachable
     - ubuntu-updated
@@ -16,8 +21,23 @@
 - name: Configure webserver packages
   hosts: security_group_webservers
   sudo: true
-  ssh_user: ubuntu
-  ansible_ssh_private_key_file: "keys/{{ ec2_key_name }}"
   roles:
-    - { role: nginx-server, header: "This is the {{ ec2_tag_Name }} server." }
+    - role: jdauphant.nginx
+      nginx_http_params:
+        - sendfile "on"
+        - access_log "/var/log/nginx/access.log"
+      nginx_sites:
+        bar:
+          - listen 8080
+          - location / { try_files $uri $uri/ /index.html; }
+          - location /images/ { try_files $uri $uri/ /index.html; }
+      nginx_configs:
+        proxy:
+          - proxy_set_header X-Real-IP  $remote_addr
+          - proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for
 
+- name: Configure webserver packages
+  hosts: security_group_dbservers
+  sudo: true
+  roles:
+    - { role: ANXS.postgresql }

@@ -1,4 +1,4 @@
-#!/usr/bin/env ansible-playbook -i inventory
+#!/usr/bin/env ansible-playbook
 ---
 
 - name: Terminate instances

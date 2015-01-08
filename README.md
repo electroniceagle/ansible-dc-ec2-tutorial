@@ -45,6 +45,25 @@ Sanity test the ec2.py dynamic environment script::
 
     Note: The ec2.py inventory script fails silently if AWS_ACCESS_KEY_ID is not set.
 
+Galaxy Components:
+------------------
+
+Grab some external modules from Ansible Galaxy::
+
+    mkdir galaxy
+    $ ansible-galaxy -p galaxy install jdauphant.nginx
+    - downloading role 'nginx', owned by jdauphant
+    - downloading role from https://github.com/jdauphant/ansible-role-nginx/archive/v1.1.1.tar.gz
+    - extracting jdauphant.nginx to galaxy/jdauphant.nginx
+    - jdauphant.nginx was installed successfully
+
+    [ansible-dc-ec2-tutorial] bschott@ironman-2 ~/Source/ansible-dc-ec2-tutorial (master)
+    $ ansible-galaxy -p galaxy install flmmartins.postgres
+    - downloading role 'postgres', owned by flmmartins
+    - downloading role from https://github.com/flmmartins/ansible-postgres/archive/master.tar.gz
+    - extracting flmmartins.postgres to galaxy/flmmartins.postgres
+    - flmmartins.postgres was installed successfully
+
 Provisioning Example:
 ---------------------
 
