@@ -1,13 +1,6 @@
 #!/usr/bin/env ansible-playbook
 ---
 
-- name: Provision the instances
-  hosts: localhost
-  gather_facts: false
-  connection: local
-  tasks:
-
-
 - name: Configure common packages
   hosts:
     - security_group_webservers
@@ -36,7 +29,7 @@
           - proxy_set_header X-Real-IP  $remote_addr
           - proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for
 
-- name: Configure webserver packages
+- name: Configure dbserver packages
   hosts: security_group_dbservers
   sudo: true
   roles:
