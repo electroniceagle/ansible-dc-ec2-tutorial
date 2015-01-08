@@ -2,7 +2,9 @@
 ---
 
 - name: Terminate instances
-  hosts: webservers dbservers
+  hosts:
+    - security_group_webservers
+    - security_group_dbservers
   connection: local
   gather_facts: false
   tasks:

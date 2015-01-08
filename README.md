@@ -24,6 +24,10 @@ Set AWS_ACCESS_KEY and AWS_SECRET_KEY for Ansible and AWS_SECRET_KEY and AWS_SEC
     export AWS_SECRET_KEY="***************************************"
     export AWS_SECRET_ACCESS_KEY="*************************************"
 
+Set the AWS default region::
+
+    export AWS_DEFAULT_REGION='us-east-1'
+
 Disable host key checking::
 
     export ANSIBLE_HOST_KEY_CHECKING=False
